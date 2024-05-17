@@ -9,11 +9,11 @@ if ($conn->connect_error) {
 }
 
 // Datos del archivo
-$nombre = "imagen";
-$url = "https://cdn.jsdelivr.net/gh/tu-usuario/mi-repo@main/mi-imagen.jpg";
+$titulo = "imagen";
+$imagen_url = "https://cdn.jsdelivr.net/gh/Juan-Grimaldo/libreria@main/imagenes-libros/content.jpeg";
 
 // Insertar en la base de datos
-$sql = "INSERT INTO archivos (nombre, url) VALUES ('$nombre', '$url')";
+$sql = "INSERT INTO libro (titulo, imagen_url) VALUES ('$titulo', '$imagen_url')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Nuevo registro creado exitosamente";
@@ -21,5 +21,5 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
+
 ?>
