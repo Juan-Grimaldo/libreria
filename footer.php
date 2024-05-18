@@ -9,5 +9,5 @@
 <footer>
 <p style="color: white;">Desarrollado por: Devia J., Grimaldo J. & Vega S. para Universidad Minuto de Dios.</p>
 <hr>
-<p style="color: white;">&copy; 2024 NubeLiteraria.com. Todos los derechos reservados.</p>
+<p style="color: white;">&copy; 2024 NubeLiteraria.com. Todos los derechos reservados.xxx</p>
 </footer>
