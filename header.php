@@ -43,11 +43,7 @@
             </div>
             <a href="index.php">Inicio</a>
             <a href="Productos.php">Libreria</a>
-            <div class="dropdown">
-                <div class="flex-genero">
-                    <a href="genero.php">Generos</a>
-                </div>
-            </div>
+            <a href="genero.php">Generos</a>
             <a href="#">Contacto</a>
         </div>
         <div class="sec2">
@@ -69,7 +65,16 @@
                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                 </svg>
             </a>
-            <a href="">
+            <?php
+            // Verificar si la sesión está iniciada
+            if (isset($_SESSION['user_log']) && $_SESSION['user_log'] === true) {
+                // Si la sesión está iniciada, el enlace lleva a la página autorizada
+            echo '<a href="mostrarCarro.php">';
+        } else {
+            // Si la sesión no está iniciada, el enlace lleva a la página de inicio de sesión
+            echo '<a href="form.php">';
+        }
+        ?>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-bag" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
