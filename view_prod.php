@@ -111,7 +111,7 @@ $genero = $row['genero']
     <hr>
     <div class="product-details">
         <div class="left-column">
-            <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>" alt="Imagen del Producto" style="width: 350px; height: auto;">
+        <img src="<?php echo $row['imagen_url']; ?>"alt="Imagen del Producto" style="width: 350px; height: auto;">
 
         </div>
         <div class="right-column">
@@ -146,7 +146,7 @@ $genero = $row['genero']
                     ?>
                         <div class="libro">
                             <div class="imagen-libro">
-                                <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
+                                <img height="100px" src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen">
                             </div>
                             <div>
                                 <p class="título"><?php echo $row['titulo'] ?></p>

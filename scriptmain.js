@@ -23,27 +23,34 @@ document.addEventListener("DOMContentLoaded", function () {
   var selectOrdenar1 = document.querySelector(".ordenar .dropdown select");
   var selectOrdenar2 = document.querySelector(".vent-ordenar .dropdown select");
   var selectOrdenar = document.querySelector(".dropdown select");
+  var libros; // Variable para almacenar los libros obtenidos del servidor
 
   botonAnterior.style.display = "none";
-
+  
   // Realizar solicitud AJAX para obtener datos del servidor
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "obtener_libros.php", true);
+  
   xhr.onreadystatechange = function () {
+  
     if (xhr.readyState === XMLHttpRequest.DONE) {
+  
       if (xhr.status === 200) {
-        var libros = JSON.parse(xhr.responseText); // Obtener los datos de la respuesta
+  
+        libros = JSON.parse(xhr.responseText); // Obtener los datos de la respuesta
         librosFiltrados = libros; // Actualizar los libros filtrados con los datos obtenidos del servidor
         // Aplicar filtros y mostrar libros al cargar la página
-        aplicarFiltros();
+        aplicarFiltros(libros); // Pasar los libros como parámetro
+        filtrarLibros(libros); // Pasar los libros como parámetro
       } else {
-        console.error("Error al obtener datos del servidor.");
+        console.error("Error al obtener datos del servidor. Estado:", xhr.status);
       }
     }
   };
+  
   xhr.send();
 
-  function aplicarFiltros() {
+  function aplicarFiltros(libros) {
     var enExistencia = document.getElementById("checkbox1").checked;
     var agotado = document.getElementById("checkbox2").checked;
     var minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
@@ -71,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function filtrarLibros() {
+  function filtrarLibros(libros) {
     var enExistencia2 = document.getElementById("checkbox3").checked;
     var agotado2 = document.getElementById("checkbox4").checked;
     var minPrice2 = parseFloat(document.getElementById("minPrice2").value) || 0;
@@ -120,17 +127,19 @@ document.addEventListener("DOMContentLoaded", function () {
     librosContainer.innerHTML = "";
     librosPagina.forEach(function (libro) {
       var libroHTML = `
-            <div class="libro">
-                <div class="imagen-libro">
-                    <img src="data:image/jpg;base64,${libro.imagen}" alt="Descripción de la imagen">
-                </div>
-                <p class="titulo">${libro.titulo}</p>
-                <p class="editorial">${libro.autor}</p>
-                <p class="valor">$${libro.precio}</p>
-            </div>
-        `;
+          <div class="libro">
+              <div class="imagen-libro">
+                  <img src="${libro.imagen_url}" alt="Descripción de la imagen">
+              </div>
+              <p class="título">${libro.titulo}</p>
+              <p class="autor">${libro.autor}</p>
+              <p class="valor">$${libro.precio}</p>
+              <a href="view_prod.php?id_libro=${libro.id_libro}" class="detalles">Detalles</a> <!-- Agrega aquí el enlace -->
+          </div>
+      `;
       librosContainer.innerHTML += libroHTML;
-    });
+  });
+  
     // Actualiza la visibilidad de los botones de paginación
     botonAnterior.style.display = paginaActual > 1 ? "block" : "none";
     botonSiguiente.style.display = paginaActual < Math.ceil(librosFiltrados.length / librosPorPagina) ? "block" : "none";

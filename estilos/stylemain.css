@@ -100,10 +100,7 @@ h2 {
 .sec1 button {
     background-color: var(--blanco);
     border: none;
-
 }
-
-
 @media (min-width: 768px) {
 
     .sec1 {
@@ -451,23 +448,34 @@ body.btn-menu-show {
     /* Color de fondo del botón */
     text-decoration: none;
 }
-
-.libro {
-    p:nth-child(1) {
-        font-weight: bold;
-    }
-
-    p:nth-child(2) {
-        text-transform: uppercase;
-        font-size: 1rem;
-    }
-
-    p:nth-child(3) {
-        color: #EA4F4F;
-    }
+.título{
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+.autor{
+    font-size: 1rem;
+    text-transform: uppercase;
+    
+}
+.valor{
+    font-size: 1.6rem;
+    color: #EA4F4F;
 }
 
 @media (min-width: 768px) {
+    .título{
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .autor{
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        
+    }
+    .valor{
+        font-size: 2rem;
+        color: #EA4F4F;
+    }
     .novedades {
 
         padding-left: 3rem;
@@ -476,11 +484,6 @@ body.btn-menu-show {
             font-size: 5rem;
             text-align: center;
         }
-
-        p {
-            font-size: 2rem;
-        }
-
         img {
             width: 20rem;
         }
@@ -870,23 +873,23 @@ input[type=number] {
 }
 /*Apartado escritorio Productos*/
 @media (min-width: 768px) {
-   .main-pro{
-    padding: 0 25rem 0 25rem;
-    .titule-pro{
+    .main-pro {
+        padding: 0 25rem 0 25rem;
+    }
+    .titule-pro {
         margin-left: 0;
     }
-    /* .libros{
+    .libros {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        .libro{
-            img{
-                width: 20rem;
-            }
-            }
-            
+    }
+    .libros .libro {
+        img {
+            max-width: none;
+            width: 20rem;
         }
-    } */
-   }
+    }
+}
 @media screen and (min-width: 769px) {
     .filtrar {
         display: none;
@@ -1153,4 +1156,3 @@ input[type=number] {
     }
     
 }
-
