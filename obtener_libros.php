@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 
 // Verificar la conexión
 if ($conn->connect_error) {

@@ -29,7 +29,7 @@
 
     <?php
     // Conexión a la base de datos
-    $conn = new mysqli("localhost", "root", "", "libreria");
+    include 'conexion.php';
 
     // Verificar si se ha enviado el formulario de búsqueda
     if (isset($_GET['enviar'])) {

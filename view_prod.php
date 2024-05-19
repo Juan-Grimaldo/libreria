@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 $id_libro = $_REQUEST['id_libro'];
 $query = "SELECT * FROM libro WHERE id_libro='$id_libro'";
 $resultado = $conn->query($query);
@@ -137,7 +137,7 @@ $genero = $row['genero']
                 <h3 class="tittle" style="text-align: center;">Titulos relacionados</h3><br>
                 <div class="libros">
                     <?php
-                    $conn = new mysqli("localhost", "root", "", "libreria");
+                    include 'conexion.php';
                     $query = "SELECT * FROM libro WHERE genero = '$genero' ORDER BY RAND() LIMIT 5";
                     $resultado = $conn->query($query);
                     while ($row = $resultado->fetch_assoc()) {

@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 
 // Verificar si se seleccionó "all" para mostrar todos los libros sin filtrar por género
 if (isset($_GET['genero'])) {

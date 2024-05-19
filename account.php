@@ -3,7 +3,7 @@
 
 <?php
 require_once './user/validate_sesion1.php';
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 $id = $_REQUEST['id'];
 $query = "SELECT * FROM usuario WHERE id='$id'";
 $sql = "SELECT imagen FROM usuario WHERE id='$id'";
