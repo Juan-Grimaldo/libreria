@@ -15,16 +15,8 @@ require_once 'validate_sesion.php'
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/dd0247d67c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../estilos/styleadmin.css">
   <title>NubeLiteraria</title>
-  <style>
-    body {
-      background-image: url('https://acortar.link/Jxzr5l');
-    }
-
-    .mt-4 {
-      margin-bottom: 24px;
-    }
-  </style>
 </head>
 
 <body>

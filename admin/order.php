@@ -15,22 +15,8 @@ require_once 'validate_sesion.php'
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/dd0247d67c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../estilos/styleadmin.css">
     <title>NubeLiteraria</title>
-    <style>
-        body {
-            background-image: url('https://acortar.link/Jxzr5l');
-        }
-
-        .mt-4 {
-            margin-bottom: 24px;
-        }
-
-        hr {
-            background-color: gray;
-            height: 0.2px;
-            border: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -77,22 +63,29 @@ require_once 'validate_sesion.php'
 
                                     $resultado = $conn->query($query);
                                     while ($row = $resultado->fetch_assoc()) {
+                                        $precio_bd = $row['precio'];
+                                        $precio_formateado = number_format($precio_bd, 0, ',', '.');
                                     ?>
                                         <tr>
                                             <td class="align-middle"><?php echo $row['detalleventa_id'] ?></td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente1_<?php echo $row['detalleventa_id']; ?>">
-                                                    <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
+                                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ventanaEmergente1_<?php echo $row['detalleventa_id']; ?>">
+                                                    <i class="fa-solid fa-circle-info"></i> Detalles
                                                 </button>
                                             </td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente2_<?php echo $row['detalleventa_id']; ?>">
-                                                    <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
+                                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ventanaEmergente2_<?php echo $row['detalleventa_id']; ?>">
+                                                    <i class="fa-solid fa-circle-info"></i> Detalles
                                                 </button>
                                             </td>
                                             <td class="align-middle">$<?php echo $row['PRECIOUNITARIO'] ?>.000</td>
                                             <td class="align-middle"><?php echo $row['CANTIDAD'] ?></td>
                                             <td class="align-middle"><?php echo $row['ESTADO'] ?></td>
+                                            <td class="align-middle">
+                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#ventanaEmergente3_<?php echo $row['detalleventa_id']; ?>">
+                                                    <i class="fa-solid fa-pen-to-square"></i> Modificar
+                                                </button>
+                                            </td>
                                         </tr>
                                         <!-- Primera Ventana Emergente -->
                                         <div class="modal fade" id="ventanaEmergente1_<?php echo $row['detalleventa_id']; ?>">
@@ -128,10 +121,31 @@ require_once 'validate_sesion.php'
                                                         <p><strong>Titulo:</strong> <?php echo $row['titulo']; ?></p>
                                                         <p><strong>Autor:</strong> <?php echo $row['autor']; ?></p>
                                                         <p><strong>Genero:</strong> <?php echo $row['genero']; ?></p>
-                                                        <p><strong>Precio:</strong> $<?php echo $row['precio']; ?></p>
+                                                        <p><strong>Precio:</strong> $<?php echo $precio_formateado; ?></p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Ventana emergente cambio status -->
+                                        <div class="modal fade" id="ventanaEmergente3_<?php echo $row['detalleventa_id']; ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Descripción del libro</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="error">¿Está seguro de modificar el estado del pedido a: ENTREGADO?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="procesos/status.php?ID=<?php echo $row['detalleventa_id']; ?>" method="post">
+                                                            <input type="text" value="<?php echo $row['detalleventa_id']; ?>" name="id" hidden>
+                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                     </div>
                                                 </div>
                                             </div>
