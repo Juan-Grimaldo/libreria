@@ -1,3 +1,3 @@
 // config.php
 <?php
-define('GITHUB_TOKEN', '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');
+define('GITHUB_TOKEN', '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');
