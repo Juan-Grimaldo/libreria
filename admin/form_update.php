@@ -49,7 +49,7 @@ require_once 'validate_sesion.php'
                         <h3>Actualizar libro</h3>
                         <form action="procesos/update.php?id_libro=<?php echo $row['id_libro']; ?>" method="POST" class="formregistro" autocomplete="off" enctype="multipart/form-data">
                             <label for="formFile" class="form-label">Imagen</label>
-                            <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
+                            <img height="100px" src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen">
                             <input class="form-control" type="file" id="imagen" name="imagen" value="" required>
                             <label for="">Titulo</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $row['titulo']; ?>" required>
