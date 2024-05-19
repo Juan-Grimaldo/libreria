@@ -51,38 +51,46 @@ $correo = $row['email'];
             <a href="./user/logout1.php"><button style="background-color:#EA4F4F">Cerrar sesión</button></a>
         </div>
     </div>
-    <hr>
     <div class="product-details">
-        <table class="table table-small table-hover table-bordered">
-            <thead>
-                <th>ID</th>
-                <th>Venta</th>
-                <th>Libro</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Estado del pedido</th>
-                <th>Modificar estado</th>
-            </thead>
-            <tbody>
-                <?php
-                $consulta = "SELECT tbldetalleventa.ID AS detalleventa_id, tbldetalleventa.*, libro.*, tblventas.*
+        <div class="table-container">
+            <h1 style="text-align: center; color:#EA4F4F;">Compras realizadas</h1>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>Libro</th>
+                    <th>Autor</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Estado del pago</th>
+                    <th>Estado entrega</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $consulta = "SELECT tbldetalleventa.ID AS detalleventa_id, tbldetalleventa.*, libro.*, tblventas.*
                             FROM tbldetalleventa
                             INNER JOIN libro ON tbldetalleventa.IDPRODUCTO = libro.id_libro
                             INNER JOIN tblventas ON tbldetalleventa.IDVENTA = tblventas.ID
                             WHERE tblventas.Correo = '$correo'";
-                $resultado = $conn->query($consulta);
-                while ($row1 = $resultado->fetch_assoc()) {
-                ?>
-                    <tr>
-                        <td class="align-middle"><?php echo $row1['detalleventa_id'] ?></td>
-                        <td class="align-middle"><?php echo $row1['titulo'] ?></td>
-                    </tr>
+                    $resultado = $conn->query($consulta);
+                    while ($row1 = $resultado->fetch_assoc()) {
+                        $precio_bd = $row1['precio'];
+                        $precio_formateado = number_format($precio_bd, 0, ',', '.');
+                    ?>
+                        <tr>
+                            <td class="align-middle"><?php echo $row1['detalleventa_id'] ?></td>
+                            <td class="align-middle"><?php echo $row1['titulo'] ?></td>
+                            <td class="align-middle"><?php echo $row1['autor'] ?></td>
+                            <td class="align-middle">$<?php echo $precio_formateado ?></td>
+                            <td class="align-middle"><?php echo $row1['Fecha'] ?></td>
+                            <td class="align-middle"><?php echo $row1['status'] ?></td>
+                            <td class="align-middle"><?php echo $row1['ESTADO'] ?></td>
+                        </tr>
                     <?php
-                }
-    ?>
-            </tbody>
-        </table>
-    
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 <?php include 'footer.php' ?>
