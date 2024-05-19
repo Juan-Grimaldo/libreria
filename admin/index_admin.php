@@ -91,7 +91,7 @@ require_once 'validate_sesion.php'
                   ?>
                       <tr>
                         <td class="align-middle"><?php echo $row['id_libro'] ?></td>
-                        <td><img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>"></td>
+                        <td><img height="100px" src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen"></td>
                         <td class="align-middle"><?php echo $row['titulo'] ?></td>
                         <td class="align-middle"><?php echo $row['autor'] ?></td>
                         <td class="align-middle"><?php echo $row['genero'] ?></td>

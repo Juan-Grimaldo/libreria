@@ -29,6 +29,12 @@ require_once 'validate_sesion.php'
                         <a href="form_agregar.php" class="btn btn-dark mt-2">
                             <i class="fa-solid fa-book" style="color: #ffffff;"></i> Agregar libro
                         </a>
+                        <a href="user.php" class="btn btn-dark mt-2">
+                            <i class="fa-solid fa-user" style="color: #ffffff;"></i> Usuarios registrados
+                        </a>
+                        <a href="order.php" class="btn btn-dark mt-2">
+                            <i class="fa-solid fa-shop" style="color: #ffffff;"></i> Pedidos
+                        </a>
                         <a href="logout.php" class="btn btn-danger mt-2">
                             <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i> Cerrar sesión
                         </a>
