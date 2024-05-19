@@ -27,7 +27,7 @@ if ($resultado->num_rows > 0) {
                     ?>
                         <div class="libro">
                             <div class="imagen-libro">
-                                <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
+                            <img src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen">
                             </div>
                             <div>
                                 <p class="título"><?php echo $row['titulo'] ?></p>

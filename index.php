@@ -36,7 +36,7 @@
             <div class="libros">
                 <?php
                 include 'conexion.php';
-                $query = "SELECT * FROM libro ORDER BY RAND() LIMIT 5";
+                $query = "SELECT * FROM libro ORDER BY id_libro DESC LIMIT 5";
                 $resultado = $conn->query($query);
                 while ($row = $resultado->fetch_assoc()) {
                     $precio_bd = $row['precio'];

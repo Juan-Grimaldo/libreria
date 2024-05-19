@@ -525,7 +525,6 @@ body.btn-menu-show {
 /*Productos*/
 .titule-pro {
     margin-left: 2rem;
-    margin-bottom: 5rem;
 }
 
 .filtrar {
@@ -874,7 +873,7 @@ input[type=number] {
 /*Apartado escritorio Productos*/
 @media (min-width: 768px) {
     .main-pro {
-        padding: 0 25rem 0 25rem;
+        padding: 0 3rem 0 3rem;
     }
     .titule-pro {
         margin-left: 0;
