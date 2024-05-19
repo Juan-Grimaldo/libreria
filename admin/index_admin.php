@@ -20,7 +20,8 @@ require_once 'validate_sesion.php'
     body {
       background-image: url('https://acortar.link/Jxzr5l');
     }
-    .mt-4{
+
+    .mt-4 {
       margin-bottom: 24px;
     }
   </style>
@@ -38,6 +39,12 @@ require_once 'validate_sesion.php'
             </a>
             <a href="form_agregar.php" class="btn btn-dark mt-2">
               <i class="fa-solid fa-book" style="color: #ffffff;"></i> Agregar libro
+            </a>
+            <a href="user.php" class="btn btn-dark mt-2">
+              <i class="fa-solid fa-user" style="color: #ffffff;"></i> Usuarios registrados
+            </a>
+            <a href="order.php" class="btn btn-dark mt-2">
+              <i class="fa-solid fa-shop" style="color: #ffffff;"></i> Pedidos
             </a>
             <a href="logout.php" class="btn btn-danger mt-2">
               <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i> Cerrar sesión
@@ -69,7 +76,7 @@ require_once 'validate_sesion.php'
                 </thead>
                 <tbody>
                   <?php
-                  $conn = new mysqli("localhost", "root", "", "libreria");
+                  include '../conexion.php';
                   $resultados_por_pagina = 10;
 
                   // Determinar la página actual
@@ -164,4 +171,5 @@ require_once 'validate_sesion.php'
 
 </body>
 <?php include '../footer.php' ?>
+
 </html>

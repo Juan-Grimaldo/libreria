@@ -57,7 +57,7 @@ require_once 'validate_sesion.php'
                                 <th>Precio</th>
                             </thead>
                             <?php
-                            $conn = new mysqli("localhost", "root", "", "libreria");
+                            include '../conexion.php';
                             $id_libro = $_REQUEST['id_libro'];
                             $query = "SELECT * FROM libro WHERE id_libro='$id_libro'";
                             $resultado = $conn->query($query);

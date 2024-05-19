@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "libreria");
+include '../../conexion.php';
 $id_libro = $_REQUEST['id_libro'];
 
 $query = "DELETE FROM libro WHERE id_libro='$id_libro'";

@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "libreria");
+include '../../conexion.php';
 
     $imagen=addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $titulo=$_POST['titulo'];

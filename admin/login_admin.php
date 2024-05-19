@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "", "libreria");
+include '../conexion.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
