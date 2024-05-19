@@ -59,51 +59,55 @@ require_once 'validate_sesion.php'
                         <div class="table-responsive">
                             <table class="table table-small table-hover table-bordered">
                                 <thead>
-                                    <th>Id</th>
+                                    <th>ID</th>
                                     <th>Venta</th>
                                     <th>Libro</th>
                                     <th>Precio</th>
                                     <th>Cantidad</th>
+                                    <th>Estado del pedido</th>
+                                    <th>Modificar estado</th>
                                 </thead>
                                 <tbody>
                                     <?php
                                     include '../conexion.php';
-                                    $query = "SELECT * FROM tbldetalleventa";
+                                    $query = "SELECT tbldetalleventa.ID AS detalleventa_id, tbldetalleventa.*, libro.*, tblventas.*
+                                              FROM tbldetalleventa
+                                              INNER JOIN libro ON tbldetalleventa.IDPRODUCTO = libro.id_libro
+                                              INNER JOIN tblventas ON tbldetalleventa.IDVENTA = tblventas.ID";
+
                                     $resultado = $conn->query($query);
                                     while ($row = $resultado->fetch_assoc()) {
                                     ?>
                                         <tr>
-                                            <td class="align-middle"><?php echo $row['ID'] ?></td>
+                                            <td class="align-middle"><?php echo $row['detalleventa_id'] ?></td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente1_<?php echo $row['IDVENTA']; ?>">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente1_<?php echo $row['detalleventa_id']; ?>">
                                                     <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
                                                 </button>
                                             </td>
                                             <td class="align-middle">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente2_<?php echo $row['IDPRODUCTO']; ?>">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente2_<?php echo $row['detalleventa_id']; ?>">
                                                     <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
                                                 </button>
                                             </td>
+                                            <td class="align-middle">$<?php echo $row['PRECIOUNITARIO'] ?>.000</td>
+                                            <td class="align-middle"><?php echo $row['CANTIDAD'] ?></td>
+                                            <td class="align-middle"><?php echo $row['ESTADO'] ?></td>
                                         </tr>
                                         <!-- Primera Ventana Emergente -->
-                                        <div class="modal fade" id="ventanaEmergente1_<?php echo $row['IDVENTA']; ?>">
+                                        <div class="modal fade" id="ventanaEmergente1_<?php echo $row['detalleventa_id']; ?>">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">VENTA</h4>
+                                                        <h4 class="modal-title">Descripción de la venta</h4>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?php
-                                                        $query1 = "SELECT tblventas.* FROM tbldetalleventa INNER JOIN tblventas ON tbldetalleventa.IDVENTA = tblventas.ID";
-                                                        $resultado1 = $conn->query($query1);
-                                                        $row1 = $resultado1->fetch_assoc();
-                                                        ?>
-                                                        <p>ID: <?php echo $row1['ID']; ?></p>
-                                                        <p>Clave transacción: <?php echo $row1['ClaveTransaccion']; ?></p>
-                                                        <p>Fecha: <?php echo $row1['Fecha']; ?></p>
-                                                        <p>Correo: <?php echo $row1['Correo']; ?></p>
-                                                        <p>Total: <?php echo $row1['Total']; ?></p>
+                                                        <p><strong>ID de la venta:</strong> <?php echo $row['ID']; ?></p>
+                                                        <p><strong>Clave de la transacción:</strong> <?php echo $row['ClaveTransaccion']; ?></p>
+                                                        <p><strong>Fecha en que se realizó:</strong> <?php echo $row['Fecha']; ?></p>
+                                                        <p><strong>Correo registrado:</strong> <?php echo $row['Correo']; ?></p>
+                                                        <p><strong>Total de la venta:</strong> $<?php echo $row['Total']; ?>.000</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -112,24 +116,19 @@ require_once 'validate_sesion.php'
                                             </div>
                                         </div>
                                         <!-- Segunda Ventana Emergente -->
-                                        <div class="modal fade" id="ventanaEmergente2_<?php echo $row['IDPRODUCTO']; ?>">
+                                        <div class="modal fade" id="ventanaEmergente2_<?php echo $row['detalleventa_id']; ?>">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Sinopsis 2</h4>
+                                                        <h4 class="modal-title">Descripción del libro</h4>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?php
-                                                        $query2 = "SELECT libro.* FROM tbldetalleventa INNER JOIN libro ON tbldetalleventa.IDPRODUCTO = libro.id_libro";
-                                                        $resultado2 = $conn->query($query2);
-                                                        $row2 = $resultado2->fetch_assoc();
-                                                        ?>
-                                                        <p>ID: <?php echo $row2['id_libro']; ?></p>
-                                                        <p>Titulo: <?php echo $row2['titulo']; ?></p>
-                                                        <p>Autor: <?php echo $row2['autor']; ?></p>
-                                                        <p>Genero: <?php echo $row2['genero']; ?></p>
-                                                        <p>Precio: <?php echo $row2['precio']; ?></p>
+                                                        <p><strong>ID del producto:</strong> <?php echo $row['id_libro']; ?></p>
+                                                        <p><strong>Titulo:</strong> <?php echo $row['titulo']; ?></p>
+                                                        <p><strong>Autor:</strong> <?php echo $row['autor']; ?></p>
+                                                        <p><strong>Genero:</strong> <?php echo $row['genero']; ?></p>
+                                                        <p><strong>Precio:</strong> $<?php echo $row['precio']; ?></p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
