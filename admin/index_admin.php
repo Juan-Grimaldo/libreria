@@ -97,18 +97,18 @@ require_once 'validate_sesion.php'
                         <td class="align-middle"><?php echo $row['genero'] ?></td>
                         <td class="align-middle"><?php echo $row['precio'] ?></td>
                         <td class="align-middle">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente<?php echo $row['id_libro'] ?>">
-                            <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
+                          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ventanaEmergente<?php echo $row['id_libro'] ?>">
+                            <i class="fa-solid fa-circle-info"></i>
                           </button>
                         </td>
                         <td class="align-middle">
-                          <a href="form_update.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-warning">
-                            <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                          <a href="form_update.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-outline-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
                           </a>
                         </td>
                         <td class="align-middle">
-                          <a href="form_delete.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-danger">
-                            <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                          <a href="form_delete.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-outline-danger">
+                            <i class="fa-solid fa-trash"></i>
                           </a>
                         </td>
                       </tr>
