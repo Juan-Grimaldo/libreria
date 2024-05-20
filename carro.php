@@ -51,11 +51,11 @@ if (isset($_POST['btnAccion'])) {
                     'PRECIO' => $PRECIO
                 );
                 $_SESSION['CARRO'][0] = $producto;
-                echo "<script>alert('Producto agregado al carro');</script>";
+                echo "<script>alert('¡Producto agregado al carrito de compra!😁');</script>";
             } else {
                 $idProductos = array_column($_SESSION['CARRO'], "ID");
                 if (in_array($ID, $idProductos)) {
-                    echo "<script>alert('El producto ya ha sido seleccionado');</script>";
+                    echo "<script>alert('Este producto ya ha sido seleccionado');</script>";
                 } else {
                     $NumeroProductos = count($_SESSION['CARRO']);
                     $producto = array(
@@ -65,7 +65,7 @@ if (isset($_POST['btnAccion'])) {
                         'PRECIO' => $PRECIO
                     );
                     $_SESSION['CARRO'][$NumeroProductos] = $producto;
-                    echo "<script>alert('Producto agregado al carro');</script>";
+                    echo "<script>alert('¡Producto agregado al carrito de compra!😁');</script>";
                 }
             }
             break;
@@ -76,7 +76,7 @@ if (isset($_POST['btnAccion'])) {
                 foreach ($_SESSION['CARRO'] as $indice => $producto) {
                     if ($producto['ID'] == $ID) {
                         unset($_SESSION['CARRO'][$indice]);
-                        echo "<script>alert('Elemento borrado...');</script>";
+                        echo "<script>alert('¡Producto eliminado!😉');</script>";
                     }
                 }
             } else {
