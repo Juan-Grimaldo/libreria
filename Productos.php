@@ -47,16 +47,6 @@
             <hr>
         </div>
         <div class="filtrar-ordenar">
-            <button id="btn-filtrar1" class="btn-dis-hidden">Disponibilidad
-                <label for="btn-filtrar1" class="btn-dis-hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right-circle" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M18 15l3 -3l-3 -3" />
-                        <path d="M5 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M7 12h14" />
-                    </svg>
-                </label>
-            </button>
             <button id="btn-filtrar2" class="btn-pre-hidden">Precio
                 <label for="btn-filtrar2" class="btn-pre-hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right-circle" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -85,54 +75,6 @@
         </div>
         <div class="eliminar">
             <button id="eliminar" class="delete">Eliminar todos filtros</button>
-        </div>
-    </div>
-</div>
-<div id="dark-overlay3" class="btn-dis-hidden">
-    <div id="container-dis" class="btn-dis-hidden">
-        <button id="btn-cerrar-dis" class="btn-dis-show close">
-            <label for="btn-cerrar" class="icon-equis">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                </svg>
-            </label>
-        </button>
-        <div class="ini-filtro">
-            <p>Filtrar y ordenar</p>
-        </div>
-        <div class="hr">
-            <hr>
-        </div>
-        <div class="filtrar-ordenar">
-            <button id="btn-filtrar1" class="btn-dis-show">
-                <label for="btn-filtrar1" class="btn-dis-show boton">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left-circle" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M17 12h-14" />
-                        <path d="M6 9l-3 3l3 3" />
-                        <path d="M19 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    </svg>
-                    <div>
-                        Disponibilidad
-                    </div>
-                </label>
-            </button>
-            <div class="checkboxs">
-                <input type="checkbox" id="checkbox1">
-                <label for="checkbox1">En existencia</label>
-            </div>
-            <div class="checkboxs">
-                <input type="checkbox" id="checkbox2">
-                <label for="checkbox2">Agotado</label>
-            </div>
-        </div>
-        <div class="hr">
-            <hr>
-        </div>
-        <div class="eliminar">
-            <button id="eliminar2" class="delete">Eliminar Filtros</button>
         </div>
     </div>
 </div>
@@ -219,34 +161,7 @@
     </div>
     <div class="filtro-desk">
         <div class="filtros">
-            <p>Filtros:</p>
-            <div class="dropdown">
-                <div class="flex-order">
-                    <a href="#">Disponibilidad</a>
-                    <div class="svg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-down dropdown-svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M6 10l6 6l6 -6h-12" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="dropdown-filtro">
-                    <div>
-                        <div class="eliminar">
-                            <button id="eliminardesk" class="delete">Eliminar Filtros</button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="checkboxs2">
-                        <input type="checkbox" id="checkbox3">
-                        <label for="checkbox1">En existencia</label>
-                    </div>
-                    <div class="checkboxs2">
-                        <input type="checkbox" id="checkbox4">
-                        <label for="checkbox2">Agotado</label>
-                    </div>
-                </div>
-            </div>
+            <p>Filtro:</p>
             <div class="dropdown">
                 <div class="flex-order">
                     <a href="#">Precio</a>
