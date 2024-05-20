@@ -1,5 +1,9 @@
 <?php
 include 'header.php';
+include 'global/conexion.php';
+include 'global/config.php';
+include 'carro.php';
+
 include 'conexion.php';
 $id_libro = $_REQUEST['id_libro'];
 $query = "SELECT * FROM libro WHERE id_libro='$id_libro'";
@@ -9,6 +13,7 @@ $precio_bd = $row['precio'];
 $precio_formateado = number_format($precio_bd, 0, ',', '.');
 $genero = $row['genero']
 ?>
+
 <html>
 
 <head>
@@ -109,6 +114,9 @@ $genero = $row['genero']
 </head>
 <main>
     <hr>
+ 
+
+
     <div class="product-details">
         <div class="left-column">
         <img src="<?php echo $row['imagen_url']; ?>"alt="Imagen del Producto" style="width: 350px; height: auto;">
@@ -128,7 +136,22 @@ $genero = $row['genero']
 
                 <h3>Precio</h3>
                 <p>$<?php echo $precio_formateado ?></p>
-                <button class="detalles">Agregar al carrito</button>
+
+
+                <form action="" method="post">
+                <input type="hidden" name="id" id="id" value="<?php echo $id_libro; ?>">
+
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo ($row['titulo']); ?>">
+                <input type="hidden" name="precio" id="precio" value="<?php echo ($precio_formateado) ?>">
+                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo (1); ?>">
+
+
+                <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">
+                    Agregar al carrito</button>
+
+                </form>
+
+
         </div>
     </div>
     <div class="product-details">
@@ -137,7 +160,6 @@ $genero = $row['genero']
                 <h3 class="tittle" style="text-align: center;">Titulos relacionados</h3><br>
                 <div class="libros">
                     <?php
-                    include 'conexion.php';
                     $query = "SELECT * FROM libro WHERE genero = '$genero' ORDER BY RAND() LIMIT 5";
                     $resultado = $conn->query($query);
                     while ($row = $resultado->fetch_assoc()) {
@@ -146,9 +168,10 @@ $genero = $row['genero']
                     ?>
                         <div class="libro">
                             <div class="imagen-libro">
-                                <img height="100px" src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen">
+                                <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
                             </div>
                             <div>
+                               
                                 <p class="título"><?php echo $row['titulo'] ?></p>
                                 <p class="autor"><?php echo $row['autor'] ?></p>
                                 <p class="valor">$<?php echo $precio_formateado ?></p>
@@ -164,5 +187,5 @@ $genero = $row['genero']
         </div>
     </div>
 </main>
-<?php include 'footer.php' ?>
+
 </html>
