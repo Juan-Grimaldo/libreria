@@ -20,8 +20,22 @@ include 'global/conexion.php';
     margin-left: 120px;
     margin-right: 120px;
 }
-</style>
 
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 15px;
+    background-color: gray;
+    height: 0.2px;
+    border: none;
+}
+
+</style>
+<hr>
 <div class="margen">
     <h3 style="font-size: 40px;">Lista del carrito</h3> <br>
     <?php if (!empty($_SESSION['CARRO'])) { ?>
@@ -51,10 +65,10 @@ include 'global/conexion.php';
                     <?php $total = $total + ($producto['PRECIO']); ?>
                 <?php } ?>
                 <tr>
-                    <td colspan="3" align="right">
+                    <td colspan="3" text-align="right">
                         <h3>Total</h3>
                     </td>
-                    <td align="right">
+                    <td text-align="right">
                         <h3>$<?php echo number_format($total, 3) ?></h3>
                     </td>
                     <td></td>
