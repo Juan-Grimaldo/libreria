@@ -44,7 +44,7 @@ VALUES (NULL, :ClaveTransaccion, '', now(), :Correo, :Total, 'Pendiente');");
 
     foreach ($_SESSION['CARRO'] as $indice => $producto) {
         $sentencia = $conn->prepare("INSERT INTO 
-    `tbldetalleventa` (`ID`, `IDVENTA`, `IDPRODUCTO`, `PRECIOUNITARIO`, `CANTIDAD`, `DESCARGADO`) 
+    `tbldetalleventa` (`ID`, `IDVENTA`, `IDPRODUCTO`, `PRECIOUNITARIO`, `CANTIDAD`, `ESTADO`) 
     VALUES (NULL, :IDVENTA, :IDPRODUCTO, :PRECIOUNITARIO, :CANTIDAD, 'En la tienda')");
 
         $sentencia->bindParam(":IDVENTA", $idVenta);

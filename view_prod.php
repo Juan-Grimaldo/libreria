@@ -4,14 +4,20 @@ include 'global/conexion.php';
 include 'global/config.php';
 include 'carro.php';
 
-include 'conexion.php';
 $id_libro = $_REQUEST['id_libro'];
-$query = "SELECT * FROM libro WHERE id_libro='$id_libro'";
-$resultado = $conn->query($query);
-$row = $resultado->fetch_assoc();
-$precio_bd = $row['precio'];
-$precio_formateado = number_format($precio_bd, 0, ',', '.');
-$genero = $row['genero']
+$stmt = $conn->prepare("SELECT * FROM libro WHERE id_libro = ?");
+$stmt->bindParam(1, $id_libro, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($row) {
+    $precio_bd = $row['precio'];
+    $precio_formateado = number_format($precio_bd, 0, ',', '.');
+    $genero = $row['genero'];
+} else {
+    echo "No se encontró el libro con ID: $id_libro";
+    exit;
+}
 ?>
 
 <html>
@@ -114,44 +120,29 @@ $genero = $row['genero']
 </head>
 <main>
     <hr>
- 
-
-
     <div class="product-details">
         <div class="left-column">
-        <img src="<?php echo $row['imagen_url']; ?>"alt="Imagen del Producto" style="width: 350px; height: auto;">
-
+            <img src="<?php echo $row['imagen_url']; ?>" alt="Imagen del Producto" style="width: 350px; height: auto;">
         </div>
         <div class="right-column">
             <h3 class="tittle"><?php echo $row['titulo'] ?></h3>
-
-                <h3>Autor</h3>
-                <p><?php echo $row['autor'] ?></p>
-
-                <h3>Genero</h3>
-                <p><?php echo $row['genero'] ?></p>
-
-                <h3>Sinopsis</h3>
-                <p><?php echo $row['sinopsis'] ?></p>
-
-                <h3>Precio</h3>
-                <p>$<?php echo $precio_formateado ?></p>
-
-
-                <form action="" method="post">
+            <h3>Autor</h3>
+            <p><?php echo $row['autor'] ?></p>
+            <h3>Genero</h3>
+            <p><?php echo $row['genero'] ?></p>
+            <h3>Sinopsis</h3>
+            <p><?php echo $row['sinopsis'] ?></p>
+            <h3>Precio</h3>
+            <p>$<?php echo $precio_formateado ?></p>
+            <form action="" method="post">
                 <input type="hidden" name="id" id="id" value="<?php echo $id_libro; ?>">
-
-                <input type="hidden" name="nombre" id="nombre" value="<?php echo ($row['titulo']); ?>">
-                <input type="hidden" name="precio" id="precio" value="<?php echo ($precio_formateado) ?>">
-                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo (1); ?>">
-
-
+                <input type="hidden" name="nombre" id="nombre" value="<?php echo $row['titulo']; ?>">
+                <input type="hidden" name="precio" id="precio" value="<?php echo $precio_formateado ?>">
+                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo 1; ?>">
                 <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">
-                    Agregar al carrito</button>
-
-                </form>
-
-
+                    Agregar al carrito
+                </button>
+            </form>
         </div>
     </div>
     <div class="product-details">
@@ -160,18 +151,19 @@ $genero = $row['genero']
                 <h3 class="tittle" style="text-align: center;">Titulos relacionados</h3><br>
                 <div class="libros">
                     <?php
-                    $query = "SELECT * FROM libro WHERE genero = '$genero' ORDER BY RAND() LIMIT 5";
-                    $resultado = $conn->query($query);
-                    while ($row = $resultado->fetch_assoc()) {
+                    $query = "SELECT * FROM libro WHERE genero = ? ORDER BY RAND() LIMIT 5";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bindParam(1, $genero, PDO::PARAM_STR);
+                    $stmt->execute();
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $precio_bd = $row['precio'];
                         $precio_formateado = number_format($precio_bd, 0, ',', '.');
                     ?>
                         <div class="libro">
                             <div class="imagen-libro">
-                                <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
+                                <img height="100px" src="<?php echo $row['imagen_url']; ?>">
                             </div>
                             <div>
-                               
                                 <p class="título"><?php echo $row['titulo'] ?></p>
                                 <p class="autor"><?php echo $row['autor'] ?></p>
                                 <p class="valor">$<?php echo $precio_formateado ?></p>
@@ -182,7 +174,7 @@ $genero = $row['genero']
                     <?php
                     }
                     ?>
-                </div>      
+                </div>
             </div>
         </div>
     </div>
