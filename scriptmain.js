@@ -3,14 +3,10 @@ const contMenu = document.getElementById("container-menu");
 const btnPro = document.getElementById("btn-pro");
 const contPro = document.getElementById("container-pro");
 const btnCerrar = document.querySelector("#btn-cerrar");
-const btnFil1 = document.getElementById("btn-filtrar1");
-const contDis = document.getElementById("container-dis");
-const btnCerrardis = document.querySelector("#btn-cerrar-dis");
 const btnFil2 = document.getElementById("btn-filtrar2");
 const contPre = document.getElementById("container-pre");
 const btnCerrarpre = document.querySelector("#btn-cerrar-pre");
 const body = document.body;
-
 
 document.addEventListener("DOMContentLoaded", function () {
   var librosFiltrados = []; // Almacena los libros filtrados
@@ -165,6 +161,15 @@ btnMenu.addEventListener("click", () => {
 btnPro.addEventListener("click", () => {
   proDisplayer();
 })
+btnFil2.addEventListener("click", () => {
+  preDisplayer();
+});
+btnCerrar.addEventListener("click", () => {
+  closeWindow();
+});
+btnCerrarpre.addEventListener("click", () => {
+  closeWindow3();
+});
 
 
 // Función para expadir o contraer el menú
@@ -190,9 +195,49 @@ function proDisplayer() {
     contPro.classList.toggle("btn-pro-hidden");
     contPro.classList.toggle("btn-pro-show");
 
-    body.classList.toggle("btn-menu-hidden");
-    body.classList.toggle("btn-menu-show");
+    body.classList.toggle("btn-pro-hidden");
+    body.classList.toggle("btn-pro-show");
   } else {
     console.error("No se encontraron todos los elementos necesarios para mostrar u ocultar el menú.");
+  }
+}
+function closeWindow() {
+  if (btnCerrar) {
+    btnCerrar.classList.toggle("btn-pro-show");
+    btnCerrar.classList.toggle("btn-pro-hidden");
+
+    contPro.classList.toggle("btn-pro-show");
+    contPro.classList.toggle("btn-pro-hidden");
+    
+    body.classList.toggle("btn-pro-show");
+    body.classList.toggle("btn-pro-hidden");
+    
+  }
+}
+function preDisplayer(){
+  if(btnFil2){
+    btnFil2.classList.toggle("btn-pre-hidden");
+    btnFil2.classList.toggle("btn-pre-show");
+
+    contPre.classList.toggle("btn-pre-hidden");
+    contPre.classList.toggle("btn-pre-show");
+    
+    body.classList.toggle("btn-pre-hidden");
+    body.classList.toggle("btn-pre-show");
+  }
+}
+function closeWindow3(){
+  if (btnCerrarpre) {
+    btnCerrarpre.classList.toggle("btn-pre-show");
+    btnCerrarpre.classList.toggle("btn-pre-hidden");
+
+
+    contPre.classList.toggle("btn-pre-show");
+    contPre.classList.toggle("btn-pre-hidden");
+
+    body.classList.toggle("btn-pre-show");
+    body.classList.toggle("btn-pre-hidden");
+  } else {
+      console.error("No se encontraron todos los elementos necesarios para cerrar la ventana.");
   }
 }

@@ -17,7 +17,7 @@
 
 
 
-    <body class="btn-menu-hidden">
+    <body class="btn-menu-hidden btn-pro-hidden btn-pre-hidden">
         <div class="header-ini">
             <p>¡Bienvenido a NubeLiteraria!</p>
         </div>

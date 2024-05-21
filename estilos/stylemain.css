@@ -540,7 +540,7 @@ body.btn-menu-show {
     }
 }
 
-body.btn-pro-show #dark-overlay {
+body.btn-pro-show #dark-overlay2 {
     display: block;
     /* Mostrar el overlay cuando el menú está activo */
 }
@@ -565,8 +565,6 @@ body.btn-pro-show #dark-overlay {
 #container-pro.btn-pro-show {
     transform: translate(0);
     visibility: visible;
-
-
 }
 
 #container-pro.btn-pro-hidden {
