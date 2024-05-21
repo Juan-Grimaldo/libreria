@@ -23,87 +23,62 @@ document.addEventListener("DOMContentLoaded", function () {
   var selectOrdenar1 = document.querySelector(".ordenar .dropdown select");
   var selectOrdenar2 = document.querySelector(".vent-ordenar .dropdown select");
   var selectOrdenar = document.querySelector(".dropdown select");
-  var libros; // Variable para almacenar los libros obtenidos del servidor
+  const minPriceInput = document.getElementById('minPrice2');
+  const maxPriceInput = document.getElementById('maxPrice2');
 
   botonAnterior.style.display = "none";
-  
-  // Realizar solicitud AJAX para obtener datos del servidor
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "obtener_libros.php", true);
-  
-  xhr.onreadystatechange = function () {
-  
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-  
-      if (xhr.status === 200) {
-  
-        libros = JSON.parse(xhr.responseText); // Obtener los datos de la respuesta
-        librosFiltrados = libros; // Actualizar los libros filtrados con los datos obtenidos del servidor
-        // Aplicar filtros y mostrar libros al cargar la página
-        aplicarFiltros(libros); // Pasar los libros como parámetro
-        filtrarLibros(libros); // Pasar los libros como parámetro
-      } else {
-        console.error("Error al obtener datos del servidor. Estado:", xhr.status);
-      }
-    }
-  };
-  
-  xhr.send();
 
-  function aplicarFiltros(libros) {
-    var enExistencia = document.getElementById("checkbox1").checked;
-    var agotado = document.getElementById("checkbox2").checked;
-    var minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-    var maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+  // Hacer la solicitud AJAX para obtener los datos iniciales
+  fetch('obtener_libros.php')
+    .then(response => response.json())
+    .then(data => {
+      // Guardar los datos obtenidos en una variable global
+      window.booksData = data;
 
-    librosFiltrados = libros.filter(function (libro) {
-      var precioLibro = parseFloat(libro.precio);
-      var precioCumple = precioLibro >= minPrice && precioLibro <= maxPrice;
+      // Filtrar y mostrar los datos inicialmente
+      filterAndDisplayBooks();
+    })
+    .catch(error => console.error('Error al obtener los datos:', error));
 
-      if (enExistencia && !agotado) {
-        return libro.disponibilidad === true && precioCumple;
-      } else if (!enExistencia && agotado) {
-        return libro.disponibilidad === false && precioCumple;
-      } else {
-        return precioCumple;
-      }
-    });
+  // Añadir eventos 'blur' a los campos de filtro
+  minPriceInput.addEventListener('blur', filterAndDisplayBooks);
+  maxPriceInput.addEventListener('blur', filterAndDisplayBooks);
 
-    paginaActual = 1;
-
-    if (librosFiltrados.length === 0) {
-      alert("No se encontraron libros que coincidan con los criterios de búsqueda.");
+  function filterAndDisplayBooks() {
+    let minPrice = parseFloat(minPriceInput.value);
+    const maxPrice = parseFloat(maxPriceInput.value) || Number.MAX_VALUE;
+    
+    
+    // Verificar si los campos de filtro están vacíos
+    if (minPriceInput.value === '' && maxPriceInput.value === '') {
+      librosFiltrados = window.booksData; // Mostrar todos los libros
     } else {
-      mostrarLibros(librosFiltrados, paginaActual);
-    }
-  }
-
-  function filtrarLibros(libros) {
-    var enExistencia2 = document.getElementById("checkbox3").checked;
-    var agotado2 = document.getElementById("checkbox4").checked;
-    var minPrice2 = parseFloat(document.getElementById("minPrice2").value) || 0;
-    var maxPrice2 = parseFloat(document.getElementById("maxPrice2").value) || Infinity;
-
-    librosFiltrados = libros.filter(function (libro) {
-      var precioLibro = parseFloat(libro.precio);
-      var disponibilidadCumple = true;
-      if (enExistencia2 && !agotado2) {
-        disponibilidadCumple = libro.disponibilidad === true;
-      } else if (!enExistencia2 && agotado2) {
-        disponibilidadCumple = libro.disponibilidad === false;
+      // Verificar si el valor de minPrice es menor que 0 y ajustarlo a 0 si es necesario
+      if (minPrice < 0) {
+        minPrice = 0;
+        minPriceInput.value = minPrice;
       }
-
-      return precioLibro >= minPrice2 && precioLibro <= maxPrice2 && disponibilidadCumple;
-    });
-
-    paginaActual = 1;
-
-    if (librosFiltrados.length === 0) {
-      alert("No se encontraron libros que coincidan con los criterios de búsqueda.");
-    } else {
-      mostrarLibros(librosFiltrados, paginaActual);
+  
+      // Filtrar los datos de los libros según los precios
+      librosFiltrados = window.booksData.filter(book => {
+        const price = parseFloat(book.precio);
+        return price >= minPrice && price <= maxPrice;
+      });
+  
+      if (librosFiltrados.length === 0) {
+        alert("No se encontraron libros que coincidan con los criterios de búsqueda.");
+        // Reiniciar los filtros
+        minPriceInput.value = '';
+        maxPriceInput.value = '';
+        librosFiltrados = window.booksData; // Mostrar todos los libros
+      }
     }
+  
+    paginaActual = 1;
+    mostrarLibros(librosFiltrados, paginaActual);
   }
+  
+  
 
   function ordenarLibros(criterio) {
     criterioOrdenamientoActual = criterio; // Actualiza el criterio de ordenamiento
@@ -138,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
       `;
       librosContainer.innerHTML += libroHTML;
-  });
-  
+    });
+
     // Actualiza la visibilidad de los botones de paginación
     botonAnterior.style.display = paginaActual > 1 ? "block" : "none";
     botonSiguiente.style.display = paginaActual < Math.ceil(librosFiltrados.length / librosPorPagina) ? "block" : "none";
@@ -178,15 +153,10 @@ document.addEventListener("DOMContentLoaded", function () {
   selectOrdenar2.addEventListener("change", function() {
     ordenarLibros(this.value);
   });
-  document.getElementById("checkbox1").addEventListener("change", aplicarFiltros);
-  document.getElementById("checkbox2").addEventListener("change", aplicarFiltros);
-  document.getElementById("checkbox3").addEventListener("change", filtrarLibros);
-  document.getElementById("checkbox4").addEventListener("change", filtrarLibros);
-  document.getElementById("minPrice").addEventListener("change", aplicarFiltros);
-  document.getElementById("maxPrice").addEventListener("change", aplicarFiltros);
-  document.getElementById("minPrice2").addEventListener("change", filtrarLibros);
-  document.getElementById("maxPrice2").addEventListener("change", filtrarLibros);
 });
+
+
+
 
 btnMenu.addEventListener("click", () => {
   menuDisplayer();
