@@ -21,30 +21,43 @@ document.addEventListener("DOMContentLoaded", function () {
   var selectOrdenar = document.querySelector(".dropdown select");
   const minPriceInput = document.getElementById('minPrice2');
   const maxPriceInput = document.getElementById('maxPrice2');
+  const minPriceMobileInput = document.getElementById('minPrice'); // Campo para vista móvil
+  const maxPriceMobileInput = document.getElementById('maxPrice'); // Campo para vista móvil
+  var eliminarFiltrodesk = document.getElementById('eliminardesk2');
+  var eliminarFiltrosBoton = document.getElementById('eliminar');
+  var eliminarFiltrosPreBton = document.getElementById('eliminar3');
+  
+
 
   botonAnterior.style.display = "none";
 
+  window.booksData = [];
   // Hacer la solicitud AJAX para obtener los datos iniciales
   fetch('obtener_libros.php')
-    .then(response => response.json())
-    .then(data => {
-      // Guardar los datos obtenidos en una variable global
-      window.booksData = data;
-
-      // Filtrar y mostrar los datos inicialmente
-      filterAndDisplayBooks();
-    })
+  .then(response => response.json())
+  .then(data => {
+    window.booksData = data;
+    // Ordena los libros por título de la A-Z antes de filtrar y mostrar
+    window.booksData.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    // Filtrar y mostrar los datos inicialmente
+    filterAndDisplayBooks();
+  })
     .catch(error => console.error('Error al obtener los datos:', error));
 
   // Añadir eventos 'blur' a los campos de filtro
   minPriceInput.addEventListener('blur', filterAndDisplayBooks);
   maxPriceInput.addEventListener('blur', filterAndDisplayBooks);
+  minPriceMobileInput.addEventListener('blur', filterAndDisplayBooks);
+  maxPriceMobileInput.addEventListener('blur', filterAndDisplayBooks);
 
   function filterAndDisplayBooks() {
-    let minPrice = parseFloat(minPriceInput.value);
-    const maxPrice = parseFloat(maxPriceInput.value) || Number.MAX_VALUE;
-    
-    
+    // Sincronizar los valores de los campos de filtro
+    minPriceInput.value = minPriceMobileInput.value || minPriceInput.value;
+    maxPriceInput.value = maxPriceMobileInput.value || maxPriceInput.value;
+
+    let minPrice = parseFloat(minPriceInput.value) || 0;
+    let maxPrice = parseFloat(maxPriceInput.value) || Number.MAX_VALUE;
+
     // Verificar si los campos de filtro están vacíos
     if (minPriceInput.value === '' && maxPriceInput.value === '') {
       librosFiltrados = window.booksData; // Mostrar todos los libros
@@ -53,28 +66,29 @@ document.addEventListener("DOMContentLoaded", function () {
       if (minPrice < 0) {
         minPrice = 0;
         minPriceInput.value = minPrice;
+        minPriceMobileInput.value = minPrice;
       }
-  
+
       // Filtrar los datos de los libros según los precios
       librosFiltrados = window.booksData.filter(book => {
         const price = parseFloat(book.precio);
         return price >= minPrice && price <= maxPrice;
       });
-  
+
       if (librosFiltrados.length === 0) {
         alert("No se encontraron libros que coincidan con los criterios de búsqueda.");
         // Reiniciar los filtros
         minPriceInput.value = '';
         maxPriceInput.value = '';
+        minPriceMobileInput.value = '';
+        maxPriceMobileInput.value = '';
         librosFiltrados = window.booksData; // Mostrar todos los libros
       }
     }
-  
+
     paginaActual = 1;
     mostrarLibros(librosFiltrados, paginaActual);
   }
-  
-  
 
   function ordenarLibros(criterio) {
     criterioOrdenamientoActual = criterio; // Actualiza el criterio de ordenamiento
@@ -149,10 +163,40 @@ document.addEventListener("DOMContentLoaded", function () {
   selectOrdenar2.addEventListener("change", function() {
     ordenarLibros(this.value);
   });
+  window.criterioOrdenamientoOriginal = "opcion1"; // Alfabéticamente, A-Z
+  function eliminarFiltros() {
+    minPriceMobileInput.value = '';
+    maxPriceMobileInput.value = '';
+    librosFiltrados = window.booksData;
+    paginaActual = 1;
+    // Restablece el orden a la configuración original
+    criterioOrdenamientoActual = window.criterioOrdenamientoOriginal;
+    selectOrdenar.value = criterioOrdenamientoActual;
+    ordenarLibros(criterioOrdenamientoActual);
+    mostrarLibros(librosFiltrados, paginaActual);
+}
+  eliminarFiltrosBoton.addEventListener("click", eliminarFiltros);
+  function eliminarFiltrosPre() {
+    minPriceMobileInput.value = '';
+    maxPriceMobileInput.value = '';
+    librosFiltrados = window.booksData;
+    paginaActual = 1;
+    ordenarLibros(criterioOrdenamientoActual);
+    mostrarLibros(librosFiltrados, paginaActual);
+  }
+  eliminarFiltrosPreBton.addEventListener("click", eliminarFiltrosPre);
+    // Función para eliminar filtros
+    function eliminarFiltrosdesk() {
+      minPriceInput.value = '';
+      maxPriceInput.value = '';
+      librosFiltrados = window.booksData;
+      paginaActual = 1;
+      ordenarLibros(criterioOrdenamientoActual);
+      mostrarLibros(librosFiltrados, paginaActual);
+    }
+  
+    eliminarFiltrodesk.addEventListener("click", eliminarFiltrosdesk);
 });
-
-
-
 
 btnMenu.addEventListener("click", () => {
   menuDisplayer();

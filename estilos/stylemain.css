@@ -218,7 +218,6 @@ h2 {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     /* Color oscuro semitransparente */
-    z-index: 1;
 }
 
 body.btn-menu-show #dark-overlay {
@@ -758,59 +757,6 @@ body.btn-pro-show {
         font-weight: bold;
     }
     
-}
-#container-dis {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    position: absolute;
-    width: 310px;
-    height: 100%;
-    top: 0;
-    background-color: #eedfdf;
-}
-/* Hacer animación */
-#container-dis.btn-dis-show {
-    transform: translate(0);
-    visibility: visible;
-}
-#container-dis.btn-dis-hidden {
-    transform: translate(0);
-    visibility: hidden;
-}
-body.btn-dis-show {
-    overflow: hidden;
-}
-.disponibilidad{
-    .button{
-        margin-top: 0;
-    }
-}
-.boton{
-    display: flex;
-    align-items: center;
-    gap: 5rem;
-}
-.checkboxs {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 2rem;
-    font-family: var(--fuentesecundaria);
-    font-weight: bold;
-    input{
-        width:20px;
-        height:20px;
-    }
-    
-}
-.checkboxs input[type="checkbox"] {
-    margin-right: 4rem;
-}
-.checkboxs label {
-    cursor: pointer;
 }
 #container-pre {
     display: flex;
