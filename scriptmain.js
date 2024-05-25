@@ -26,22 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
   var eliminarFiltrodesk = document.getElementById('eliminardesk2');
   var eliminarFiltrosBoton = document.getElementById('eliminar');
   var eliminarFiltrosPreBton = document.getElementById('eliminar3');
-  
-
 
   botonAnterior.style.display = "none";
 
   window.booksData = [];
   // Hacer la solicitud AJAX para obtener los datos iniciales
   fetch('obtener_libros.php')
-  .then(response => response.json())
-  .then(data => {
-    window.booksData = data;
-    // Ordena los libros por título de la A-Z antes de filtrar y mostrar
-    window.booksData.sort((a, b) => a.titulo.localeCompare(b.titulo));
-    // Filtrar y mostrar los datos inicialmente
-    filterAndDisplayBooks();
-  })
+    .then(response => response.json())
+    .then(data => {
+      window.booksData = data;
+      // Ordena los libros por título de la A-Z antes de filtrar y mostrar
+      window.booksData.sort((a, b) => a.titulo.localeCompare(b.titulo));
+      // Filtrar y mostrar los datos inicialmente
+      filterAndDisplayBooks();
+    })
     .catch(error => console.error('Error al obtener los datos:', error));
 
   // Añadir eventos 'blur' a los campos de filtro
@@ -147,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  selectOrdenar.addEventListener("change", function() {
+  selectOrdenar.addEventListener("change", function () {
     ordenarLibros(this.value);
   });
 
@@ -155,12 +153,12 @@ document.addEventListener("DOMContentLoaded", function () {
   ordenarLibros(criterioOrdenamientoActual);
 
   // Event listener para el cambio en la selección de ordenar del primer selector
-  selectOrdenar1.addEventListener("change", function() {
+  selectOrdenar1.addEventListener("change", function () {
     ordenarLibros(this.value);
   });
 
   // Event listener para el cambio en la selección de ordenar del segundo selector
-  selectOrdenar2.addEventListener("change", function() {
+  selectOrdenar2.addEventListener("change", function () {
     ordenarLibros(this.value);
   });
   window.criterioOrdenamientoOriginal = "opcion1"; // Alfabéticamente, A-Z
@@ -174,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     selectOrdenar.value = criterioOrdenamientoActual;
     ordenarLibros(criterioOrdenamientoActual);
     mostrarLibros(librosFiltrados, paginaActual);
-}
+  }
   eliminarFiltrosBoton.addEventListener("click", eliminarFiltros);
   function eliminarFiltrosPre() {
     minPriceMobileInput.value = '';
@@ -185,17 +183,17 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarLibros(librosFiltrados, paginaActual);
   }
   eliminarFiltrosPreBton.addEventListener("click", eliminarFiltrosPre);
-    // Función para eliminar filtros
-    function eliminarFiltrosdesk() {
-      minPriceInput.value = '';
-      maxPriceInput.value = '';
-      librosFiltrados = window.booksData;
-      paginaActual = 1;
-      ordenarLibros(criterioOrdenamientoActual);
-      mostrarLibros(librosFiltrados, paginaActual);
-    }
-  
-    eliminarFiltrodesk.addEventListener("click", eliminarFiltrosdesk);
+  // Función para eliminar filtros
+  function eliminarFiltrosdesk() {
+    minPriceInput.value = '';
+    maxPriceInput.value = '';
+    librosFiltrados = window.booksData;
+    paginaActual = 1;
+    ordenarLibros(criterioOrdenamientoActual);
+    mostrarLibros(librosFiltrados, paginaActual);
+  }
+
+  eliminarFiltrodesk.addEventListener("click", eliminarFiltrosdesk);
 });
 
 btnMenu.addEventListener("click", () => {
@@ -252,25 +250,25 @@ function closeWindow() {
 
     contPro.classList.toggle("btn-pro-show");
     contPro.classList.toggle("btn-pro-hidden");
-    
+
     body.classList.toggle("btn-pro-show");
     body.classList.toggle("btn-pro-hidden");
-    
+
   }
 }
-function preDisplayer(){
-  if(btnFil2){
+function preDisplayer() {
+  if (btnFil2) {
     btnFil2.classList.toggle("btn-pre-hidden");
     btnFil2.classList.toggle("btn-pre-show");
 
     contPre.classList.toggle("btn-pre-hidden");
     contPre.classList.toggle("btn-pre-show");
-    
+
     body.classList.toggle("btn-pre-hidden");
     body.classList.toggle("btn-pre-show");
   }
 }
-function closeWindow3(){
+function closeWindow3() {
   if (btnCerrarpre) {
     btnCerrarpre.classList.toggle("btn-pre-show");
     btnCerrarpre.classList.toggle("btn-pre-hidden");
@@ -282,6 +280,6 @@ function closeWindow3(){
     body.classList.toggle("btn-pre-show");
     body.classList.toggle("btn-pre-hidden");
   } else {
-      console.error("No se encontraron todos los elementos necesarios para cerrar la ventana.");
+    console.error("No se encontraron todos los elementos necesarios para cerrar la ventana.");
   }
 }

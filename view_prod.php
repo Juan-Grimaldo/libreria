@@ -116,6 +116,122 @@ if ($row) {
                 height: auto;
             }
         }
+
+        /* CSS para la barra de búsqueda */
+#search-bar {
+    display: none;
+    background-color: #f9f9f9;
+    padding: 10px;
+    position: relative;
+
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--fuenteprincipal);
+}
+
+#search-results {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    font-family: var(--fuenteprincipal);
+
+}
+.search-result-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-family: var(--fuenteprincipal);
+}
+
+.search-result-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    font-family: var(--fuenteprincipal);
+}
+
+.search-result-item a:hover {
+    background-color: #f1f1f1;
+}
+
+.search-result-title {
+    font-weight: bold;
+}
+
+.search-result-author {
+    font-size: 0.9em;
+    color: #666;
+}
+.search{
+    background-color: var(--fuenteprincipal);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.search:hover {
+    background-color: transparent; /* Establece el color de fondo a transparente */
+}
+#btn-menu:hover{
+    background-color: transparent; /* Establece el color de fondo a transparente */
+}
+.btn-menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+#container-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 290px;
+    height: 100%;
+    background-color: #eedfdf;
+    /* Ajusta el z-index para que sea mayor que el de .hero */
+}
+/* Hacer animación */
+#container-menu.btn-menu-show {
+    transform: translate(0);
+    visibility: visible;
+
+
+}
+
+#container-menu.btn-menu-hidden {
+    transform: translate(0);
+    visibility: hidden;
+}
+
+body.btn-menu-show {
+    overflow: hidden;
+}
+
+.cont-menu {
+    nav {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--fuentesecundaria);
+        font-weight: bold;
+
+        a {
+            margin: 4.5rem 0 0 3rem;
+            color: var(--secundario);
+            font-size: 2rem;
+        }
+    }
+}
     </style>
 </head>
 <main>
@@ -158,7 +274,7 @@ if ($row) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $precio_bd = $row['precio'];
                         $precio_formateado = number_format($precio_bd, 0, ',', '.');
-                    ?>
+                        ?>
                         <div class="libro">
                             <div class="imagen-libro">
                                 <img height="100px" src="<?php echo $row['imagen_url']; ?>">
@@ -167,11 +283,12 @@ if ($row) {
                                 <p class="título"><?php echo $row['titulo'] ?></p>
                                 <p class="autor"><?php echo $row['autor'] ?></p>
                                 <p class="valor">$<?php echo $precio_formateado ?></p>
-                                <a href="view_prod.php?id_libro=<?php echo $row['id_libro']; ?>" class="detalles">Detalles</a>
+                                <a href="view_prod.php?id_libro=<?php echo $row['id_libro']; ?>"
+                                    class="detalles">Detalles</a>
                                 <br><br>
                             </div>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
@@ -179,5 +296,6 @@ if ($row) {
         </div>
     </div>
 </main>
-
+<script src="./scriptmain.js"></script>
+<script src="./scriptsearch.js"></script>
 </html>

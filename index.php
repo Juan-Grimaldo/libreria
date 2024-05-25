@@ -65,5 +65,5 @@
 </body>
 <?php include 'footer.php' ?>
 <script src="./scriptmain.js"></script>
-
+<script src="./scriptsearch.js"></script>
 </html>

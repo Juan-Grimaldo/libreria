@@ -34,6 +34,7 @@
         .tittle {
             font-size: 40px;
             margin: 0;
+            font-family: 'Monserrat', sans-serif;
         }
     </style>
 </head>

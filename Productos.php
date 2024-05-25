@@ -237,6 +237,7 @@
 </main>
 </body>
 <script src="./scriptmain.js"></script>
+<script src="./scriptsearch.js"></script>
 <?php include 'footer.php' ?>
 
 </html>
