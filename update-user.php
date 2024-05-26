@@ -2,11 +2,9 @@
 include '../conexion.php';
 
 $id = $_REQUEST['id'];
-$imagen = $_POST['imagen'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-
 
 // Comprobar si se subió una nueva imagen
 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
