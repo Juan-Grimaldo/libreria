@@ -47,7 +47,7 @@ $correo = $row['email'];
 
             <h3>Email / Correo</h3>
             <p><?php echo $row['email'] ?></p><br>
-            <a href="./account/validate.php?id=<?php echo $id ?>"><button style="background-color:black">Actualizar información</button></a><br><br>
+            <a href="./validate.php?id=<?php echo $id ?>"><button style="background-color:black">Actualizar información</button></a><br><br>
             <a href="./user/logout1.php"><button style="background-color:#EA4F4F">Cerrar sesión</button></a>
         </div>
     </div>

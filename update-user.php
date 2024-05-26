@@ -1,12 +1,12 @@
 <?php
-include '../../conexion.php';
+include '../conexion.php';
 
-$id_libro = $_REQUEST['id_libro'];
-$titulo = $_POST['titulo'];
-$autor = $_POST['autor'];
-$genero = $_POST['genero'];
-$sinopsis = $_POST['sinopsis'];
-$precio = $_POST['precio'];
+$id = $_REQUEST['id'];
+$imagen = $_POST['imagen'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+
 
 // Comprobar si se subió una nueva imagen
 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -32,7 +32,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     ]);
 
     // URL de la API de GitHub
-    $url = "https://api.github.com/repos/$githubUsername/$repoName/contents/imagenes-libros/$fileName";
+    $url = "https://api.github.com/repos/$githubUsername/$repoName/contents/imagenes-user/$fileName";
 
     // Inicializar cURL
     $ch = curl_init($url);
@@ -59,7 +59,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         $githubUrl = $responseData['content']['download_url'];
 
         // Actualizar los datos en la base de datos incluyendo la nueva imagen
-        $query = "UPDATE libro SET imagen_url='$githubUrl', titulo='$titulo', autor='$autor', genero='$genero', sinopsis='$sinopsis', precio='$precio' WHERE id_libro = '$id_libro'";
+        $query = "UPDATE usuario SET imagen='$githubUrl', name='$name', email='$email', password='$password' WHERE id = '$id'";
     } else {
         // Mostrar respuesta de la API de GitHub para diagnosticar el error
         echo "Error al subir la imagen a GitHub. Código HTTP: $httpcode. Respuesta: " . htmlentities($response);
@@ -67,7 +67,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     }
 } else {
     // Si no se subió una nueva imagen, actualizar solo los demás datos en la base de datos
-    $query = "UPDATE libro SET titulo='$titulo', autor='$autor', genero='$genero', sinopsis='$sinopsis', precio='$precio' WHERE id_libro = '$id_libro'";
+    $query = "UPDATE usuario SET name='$name', email='$email', password='$password' WHERE id = '$id'";
 }
 
 // Ejecutar la consulta de actualización
