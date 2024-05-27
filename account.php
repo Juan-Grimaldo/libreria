@@ -24,6 +24,18 @@ $correo = $row['email'];
 
 <head>
     <link rel="stylesheet" href="./estilos/style2.css">
+    <style>
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
 </head>
 
 <!-- INICIO ACCOUNT -->
@@ -47,8 +59,8 @@ $correo = $row['email'];
 
             <h3>Email / Correo</h3>
             <p><?php echo $row['email'] ?></p><br>
-            <a href="./validate.php?id=<?php echo $id ?>"><button style="background-color:black">Actualizar información</button></a><br><br>
-            <a href="./user/logout1.php"><button style="background-color:#EA4F4F">Cerrar sesión</button></a>
+            <a href="./validate.php?id=<?php echo $id ?>"><button class="btn" style="background-color:black">Actualizar información</button></a><br><br>
+            <a href="./user/logout1.php"><button class="btn" style="background-color:#EA4F4F">Cerrar sesión</button></a>
         </div>
     </div>
     <div class="product-details">
@@ -93,6 +105,6 @@ $correo = $row['email'];
         </div>
     </div>
 </main>
+<script src="./scriptmain.js"></script>
 <?php include 'footer.php' ?>
-
 </html>
