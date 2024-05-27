@@ -25,12 +25,12 @@
             desvelando los secretos que aguardan ser descubiertos en cada giro de página. ¡Tu aventura literaria
             comienza ahora!</p>
         <div class="btn">
-            <a href="#Ofertas"><button>Sigue la travesía</button></a>
+            <a href="#descripcion-a"><button>Sigue la travesía</button></a>
         </div>
     </div>
 </section>
 <div class="contenedor">
-    <section class="descripcion-a">
+    <section class="descripcion-a" id="descripcion-a">
         <div class="novedades">
             <h2>Novedades</h2>
             <div class="libros">
