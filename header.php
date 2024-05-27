@@ -13,6 +13,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&family=Lobster&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./estilos/stylemain.css">
+    <style>
+        .ini{
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body class="btn-menu-hidden btn-pro-hidden btn-pre-hidden">
@@ -122,7 +127,7 @@
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                     </svg>
-                    <p>Iniciar Sesión</p>
+                    <p class="ini">Iniciar Sesión</p>
                     </a>
                 </div>
             </div>

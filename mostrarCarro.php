@@ -17,10 +17,24 @@ include 'global/conexion.php';
 
 <style>
 .margen {
+    margin-left: 0;
+    margin-right: 0;
+}
+.table td, .table th {
+    padding: 0;
+    vertical-align: middle;
+}
+@media (min-width: 992px) {
+    .margen {
     margin-left: 120px;
     margin-right: 120px;
+    }
+    .table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
 }
 
+}
 a:hover{
     text-decoration: none;
     color: black;
@@ -32,6 +46,9 @@ hr {
     background-color: gray;
     height: 0.2px;
     border: none;
+}
+.alert{
+    position: static;
 }
 </style>
 <hr>
@@ -105,4 +122,3 @@ function validarCorreo() {
     return true;
 }
 </script>
-<script src="./scriptmain.js"></script>
