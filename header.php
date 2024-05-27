@@ -42,7 +42,6 @@
             <a href="index.php">Inicio</a>
             <a href="Productos.php">Libreria</a>
             <a href="genero.php">Generos</a>
-            <a href="#">Contacto</a>
         </div>
         <div class="sec2">
             <?php
@@ -101,7 +100,6 @@
                         <a href="index.php">Inicio</a>
                         <a href="Productos.php">Libreria</a>
                         <a href="genero.php">Géneros</a>
-                        <a href="#">Contacto</a>
                     </nav>
                     <label for="" class="icon-equis"></label>
                 </div>
