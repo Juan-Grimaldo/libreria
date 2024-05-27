@@ -100,7 +100,7 @@
                     <nav>
                         <a href="index.php">Inicio</a>
                         <a href="Productos.php">Libreria</a>
-                        <a href="genero.php">Generos</a>
+                        <a href="genero.php">Géneros</a>
                         <a href="#">Contacto</a>
                     </nav>
                     <label for="" class="icon-equis"></label>
@@ -122,15 +122,10 @@
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                     </svg>
+                    <p>Iniciar Sesión</p>
                     </a>
                 </div>
             </div>
         </div>
-    </main>
-    <footer>
-        <p>&copy; NubeLiteraria 2024</p>
-    </footer>
-</body>
-<script src="./app.js"></script>
 
 </html>
