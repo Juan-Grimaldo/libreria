@@ -120,5 +120,5 @@ $correo = $row['email'];
     </main>
 </body>
 </html>
-
+<script src="./scriptmain.js"></script>;
 <?php include 'footer.php'; ?>
