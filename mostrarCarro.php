@@ -105,3 +105,4 @@ function validarCorreo() {
     return true;
 }
 </script>
+<script src="./scriptmain.js"></script>

@@ -86,3 +86,4 @@ if (isset($_POST['btnAccion'])) {
     }
 }
 ?>
+<script src="./scriptmain.js"></script>;

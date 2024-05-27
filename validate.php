@@ -210,5 +210,6 @@ $correo = $row['email'];
         });
     </script>
 </body>
+<script src="./scriptmain.js"></script>;
 <?php include 'footer.php' ?>
 </html>
