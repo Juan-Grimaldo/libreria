@@ -127,9 +127,6 @@
             </div>
         </div>
     </main>
-    <footer>
-        <p>&copy; NubeLiteraria 2024</p>
-    </footer>
 </body>
 <script src="./app.js"></script>
 
