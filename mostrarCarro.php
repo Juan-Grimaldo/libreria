@@ -33,7 +33,6 @@ hr {
     height: 0.2px;
     border: none;
 }
-
 </style>
 <hr>
 <div class="margen">
