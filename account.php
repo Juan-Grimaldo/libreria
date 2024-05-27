@@ -74,8 +74,8 @@ $correo = $row['email'];
                 <p><?php echo htmlspecialchars($row['name']); ?></p>
                 <h3>Email / Correo</h3>
                 <p><?php echo htmlspecialchars($row['email']); ?></p><br>
-                <a href="./validate.php?id=<?php echo urlencode($id); ?>"><button style="background-color:black">Actualizar información</button></a><br><br>
-                <a href="./user/logout1.php"><button style="background-color:#EA4F4F">Cerrar sesión</button></a>
+                <a href="./validate.php?id=<?php echo urlencode($id); ?>"><button class="btn" style="background-color:black">Actualizar información</button></a><br><br>
+                <a href="./user/logout1.php"><button class="btn" style="background-color:#EA4F4F">Cerrar sesión</button></a>
             </div>
         </div>
         <div class="product-details">
