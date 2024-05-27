@@ -15,9 +15,15 @@
 <section id="hero2" class="hero2">
     <div class="contenido-hero2">
         <h2>¡Bienvenido a tu aventura literaria!</h2>
-        <p>Prepárate para embarcarte en un viaje de descubrimiento a través de las páginas de la imaginación. Cada libro es un portal hacia nuevos horizontes, donde las palabras son el viento que impulsa tu nave. Deja que la curiosidad sea tu brújula mientras exploras mundos desconocidos y te sumerges en historias que te harán reír, llorar y soñar.
-            En esta travesía, encontrarás personajes inolvidables que te acompañarán en tu viaje, paisajes que te transportarán a lugares lejanos y épocas pasadas, y emociones que te envolverán en cada página.
-            En esta librería virtual, tú eres el capitán de tu propia odisea literaria. Así que sigue navegando, desvelando los secretos que aguardan ser descubiertos en cada giro de página. ¡Tu aventura literaria comienza ahora!</p>
+        <p>Prepárate para embarcarte en un viaje de descubrimiento a través de las páginas de la imaginación. Cada libro
+            es un portal hacia nuevos horizontes, donde las palabras son el viento que impulsa tu nave. Deja que la
+            curiosidad sea tu brújula mientras exploras mundos desconocidos y te sumerges en historias que te harán
+            reír, llorar y soñar.
+            En esta travesía, encontrarás personajes inolvidables que te acompañarán en tu viaje, paisajes que te
+            transportarán a lugares lejanos y épocas pasadas, y emociones que te envolverán en cada página.
+            En esta librería virtual, tú eres el capitán de tu propia odisea literaria. Así que sigue navegando,
+            desvelando los secretos que aguardan ser descubiertos en cada giro de página. ¡Tu aventura literaria
+            comienza ahora!</p>
         <div class="btn">
             <a href="#Ofertas"><button>Sigue la travesía</button></a>
         </div>
@@ -29,16 +35,16 @@
             <h2>Novedades</h2>
             <div class="libros">
                 <?php
-                $conn = new mysqli("localhost", "root", "", "libreria");
-                $query = "SELECT * FROM libro ORDER BY RAND() LIMIT 5";
+                include 'conexion.php';
+                $query = "SELECT * FROM libro ORDER BY id_libro DESC LIMIT 5";
                 $resultado = $conn->query($query);
                 while ($row = $resultado->fetch_assoc()) {
                     $precio_bd = $row['precio'];
                     $precio_formateado = number_format($precio_bd, 0, ',', '.');
-                ?>
+                    ?>
                     <div class="libro">
                         <div class="imagen-libro">
-                            <img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>">
+                            <img src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen">
                         </div>
                         <div>
                             <p class="título"><?php echo $row['titulo'] ?></p>
@@ -48,7 +54,7 @@
                             <br><br>
                         </div>
                     </div>
-                <?php
+                    <?php
                 }
                 ?>
             </div>
@@ -59,5 +65,5 @@
 </body>
 <?php include 'footer.php' ?>
 <script src="./scriptmain.js"></script>
-
+<script src="./scriptsearch.js"></script>
 </html>

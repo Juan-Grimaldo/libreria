@@ -15,15 +15,8 @@ require_once 'validate_sesion.php'
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/dd0247d67c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../estilos/styleadmin.css">
   <title>NubeLiteraria</title>
-  <style>
-    body {
-      background-image: url('https://acortar.link/Jxzr5l');
-    }
-    .mt-4{
-      margin-bottom: 24px;
-    }
-  </style>
 </head>
 
 <body>
@@ -38,6 +31,12 @@ require_once 'validate_sesion.php'
             </a>
             <a href="form_agregar.php" class="btn btn-dark mt-2">
               <i class="fa-solid fa-book" style="color: #ffffff;"></i> Agregar libro
+            </a>
+            <a href="user.php" class="btn btn-dark mt-2">
+              <i class="fa-solid fa-user" style="color: #ffffff;"></i> Usuarios registrados
+            </a>
+            <a href="order.php" class="btn btn-dark mt-2">
+              <i class="fa-solid fa-shop" style="color: #ffffff;"></i> Pedidos
             </a>
             <a href="logout.php" class="btn btn-danger mt-2">
               <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i> Cerrar sesión
@@ -69,7 +68,7 @@ require_once 'validate_sesion.php'
                 </thead>
                 <tbody>
                   <?php
-                  $conn = new mysqli("localhost", "root", "", "libreria");
+                  include '../conexion.php';
                   $resultados_por_pagina = 10;
 
                   // Determinar la página actual
@@ -92,24 +91,24 @@ require_once 'validate_sesion.php'
                   ?>
                       <tr>
                         <td class="align-middle"><?php echo $row['id_libro'] ?></td>
-                        <td><img height="100px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>"></td>
+                        <td><img height="100px" src="<?php echo $row['imagen_url']; ?>" alt="Descripción de la imagen"></td>
                         <td class="align-middle"><?php echo $row['titulo'] ?></td>
                         <td class="align-middle"><?php echo $row['autor'] ?></td>
                         <td class="align-middle"><?php echo $row['genero'] ?></td>
                         <td class="align-middle"><?php echo $row['precio'] ?></td>
                         <td class="align-middle">
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ventanaEmergente<?php echo $row['id_libro'] ?>">
-                            <i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
+                          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ventanaEmergente<?php echo $row['id_libro'] ?>">
+                            <i class="fa-solid fa-circle-info"></i>
                           </button>
                         </td>
                         <td class="align-middle">
-                          <a href="form_update.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-warning">
-                            <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
+                          <a href="form_update.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-outline-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
                           </a>
                         </td>
                         <td class="align-middle">
-                          <a href="form_delete.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-danger">
-                            <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                          <a href="form_delete.php?id_libro=<?php echo $row['id_libro']; ?>" class="btn btn-outline-danger">
+                            <i class="fa-solid fa-trash"></i>
                           </a>
                         </td>
                       </tr>
@@ -164,4 +163,5 @@ require_once 'validate_sesion.php'
 
 </body>
 <?php include '../footer.php' ?>
+
 </html>

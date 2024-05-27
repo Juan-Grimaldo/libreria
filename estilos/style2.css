@@ -37,7 +37,7 @@ body {
 }
 
 .tittle {
-    margin-top: 0;
+    margin-top: 10px;
     font-size: 40px;
 }
 
@@ -46,20 +46,6 @@ h3 {
     font-size: 24px;
 }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
 
 .product-related {
     width: 95%;
@@ -67,6 +53,77 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+
+.table-container {
+    max-width: 90%;
+    /* Limitar el ancho de la tabla al 90% del contenedor */
+    margin: auto;
+    /* Centrar la tabla */
+    overflow-x: auto;
+    /* Hacer la tabla responsiva */
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: separate;
+    /* Cambia de collapse a separate para bordes redondeados */
+    border-spacing: 0;
+    /* Asegurar que no haya espacio entre celdas */
+    border-radius: 15px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Asegurar que el contenido no se desborde */
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody+tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-rounded {
+    border-radius: 15px;
+    /* Bordes redondeados para toda la tabla */
+    overflow: hidden;
+    /* Asegurar que el contenido no se desborde */
+}
+
+.table th,
+.table td {
+    padding: 0.75rem 1.5rem;
+    /* Aumentar el espacio entre columnas */
+}
+
 
 @media only screen and (min-width: 768px) {
 

@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 
 // Verificar la conexión
 if ($conn->connect_error) {
@@ -8,7 +8,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener todos los libros
-$query = "SELECT * FROM usuario";
+$query = "SELECT * FROM libro";
 $result = mysqli_query($conn, $query);
 
 // Verificar si hubo errores en la consulta

@@ -1,7 +1,7 @@
 <?php
 
 // Crear conexión
-$conn = new mysqli("localhost", "root", "", "libreria");
+include 'conexion.php';
 
 // Verificar conexión
 if ($conn->connect_error) {

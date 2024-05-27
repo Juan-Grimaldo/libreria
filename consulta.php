@@ -1,5 +1,5 @@
 <?php
-                $conn = new mysqli("localhost", "root", "", "libreria");
+                include 'conexion.php';
                 $query = "SELECT * FROM libro ORDER BY RAND() LIMIT 5";
                 $resultado = $conn->query($query);
                 while ($row = $resultado->fetch_assoc()) {

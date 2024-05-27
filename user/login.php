@@ -16,9 +16,10 @@ if ($result->num_rows > 0) {
     $id = $row['id'];
     $_SESSION['id'] = $id;
     $_SESSION['user_log'] = true;
+    $_SESSION['email'] = $row['email'];
     echo "<script>  window.alert('¡Bienvenido, $name!😁');
     window.location.href = '../index.php';</script>";
 } else {
-    echo "<script>  window.alert('¡Ups ha ocurrido un error!😕');
+    echo "<script>  window.alert('¡Ups, correo y/o contraseña incorrectos!😕');
     window.location.href = '../form.php';</script>";
 }

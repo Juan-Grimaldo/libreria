@@ -12,16 +12,8 @@ require_once 'validate_sesion.php'
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/dd0247d67c.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>eBook</title>
-    <style>
-        body {
-            background-image: url('https://acortar.link/Jxzr5l');
-        }
-        .form-control {
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="../estilos/styleadmin.css">
+    <title>NubeLiteraria</title>
 </head>
 
 <body>
@@ -36,6 +28,12 @@ require_once 'validate_sesion.php'
                         </a>
                         <a href="form_agregar.php" class="btn btn-dark mt-2">
                             <i class="fa-solid fa-book" style="color: #ffffff;"></i> Agregar libro
+                        </a>
+                        <a href="user.php" class="btn btn-dark mt-2">
+                            <i class="fa-solid fa-user" style="color: #ffffff;"></i> Usuarios registrados
+                        </a>
+                        <a href="order.php" class="btn btn-dark mt-2">
+                            <i class="fa-solid fa-shop" style="color: #ffffff;"></i> Pedidos
                         </a>
                         <a href="logout.php" class="btn btn-danger mt-2">
                             <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i> Cerrar sesión
